@@ -1,7 +1,0 @@
-package edu.kh.demo.controller;
-
-import jakarta.servlet.annotation.WebServlet;
-
-public class TestController{
-
-}

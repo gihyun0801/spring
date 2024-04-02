@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+  <ul>
+ 
+   <li th:each="c : ${stdList}" th:text="${c}"></li>
+
+  </ul>
+
+
+
+  <table border="1">
+
+   <thead>
+    <th>학번</th>
+    <th>이름</th>
+   </thead>
+
+
+   <tbody>
+     
+    <tr th:each="c : ${stdList}">
+        <td th:text="${c.studentNo}"></td>
+        <td th:text="${c.inputName}"></td>
+    </tr>
+
+   </tbody>
+
+  </table>
+
+<hr><hr>
+
+<ul>
+    <li th:text="|dsadsadsadsa ㅁㄻㄴㄻㄴㄹ${student.studentNo}|"></li>
+    <li th:text="${student.inputName}"></li>
+</ul>
+
+
+
+<h1 th:text="${list}"></h1>
+
+<hr>
+
+<h1 th:utext="${list}"></h1>
+
+<h1 th:text="#{app.name}"></h1>
+
+<img th:src="#{apr.ddd}">
+
+
+</body>
+</html>
