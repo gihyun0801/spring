@@ -11,3 +11,5 @@
 2024-04-02 11:21:22,075 [Start Help Server] INFO  org.eclipse.jetty.server.Server - Started oejs.Server@6d1ca259{STARTING}[12.0.6,sto=0] @8433543ms
 2024-04-02 17:21:38,565 [Stop Help Server] INFO  org.eclipse.jetty.server.Server - Stopped oejs.Server@6d1ca259{STOPPING}[12.0.6,sto=0]
 2024-04-02 17:21:38,567 [Stop Help Server] INFO  o.e.jetty.server.AbstractConnector - Stopped ServerConnector@5a12b3a{HTTP/1.1, (http/1.1)}{127.0.0.1:0}
+2024-04-03 08:59:57,660 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-04-03 12:50:38,863 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
