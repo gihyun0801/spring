@@ -44,7 +44,7 @@ public class DBConfig {
    
    //Mybatis 설정//
    
-   
+   @Bean
    public SqlSessionFactory sessionFactory(DataSource dataSource) throws Exception {
 	   
 	   SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();

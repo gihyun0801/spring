@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoList-boot</title>
+
+    <style>
+
+table thead{
+    background-color: yellow;
+}
+table tbody{
+    background-color: #fffff1;
+}
+
+    </style>
+</head>
+<body>
+     
+      <h1>Todo List</h1>
+
+
+   <form action="/todo/add">
+
+   <h4>할 일 추가</h4>
+
+   <div>
+    제목 : <input type="text" name="todoTitle">
+   </div>
+
+   <div>
+    <textarea name="todoContent" cols="50" rows="5" placeholder="상세 내용"></textarea>
+   </div>
+
+   <button>추가하기</button>
+
+   </form>
+
+    <h3 th:text="|전제 Todo 의 개수 :  ${#lists.size(todoList)} 개 / 완료된 Todo 개수 : ${completeCount}|">내용</h3>
+
+    
+ <table border="1" style="border-collapse: collapse;">
+   
+    <thead>
+        <th>번호</th>
+        <th>제목</th>
+        <th>완료 여부</th>
+        <th>날짜</th>
+    </thead>
+
+
+     <tbody>
+        <tr th:each="c : ${todoList}" th:object="${c}">
+            <td th:text="*{todoNo}" style="color:rgb(255, 0, 0);"></td>
+            <td>
+                <a href="" th:text="*{todoTitle}"></a>
+            </td>
+            <td th:text="*{complete}"></td>
+            <td th:text="*{regDate}"></td>
+        </tr>
+     </tbody>
+
+ </table>
+
+
+
+ <th:block th:replace="~{common/footer}"></th:block>
+
+</body>
+</html>

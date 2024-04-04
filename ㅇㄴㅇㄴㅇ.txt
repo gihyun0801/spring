@@ -1,0 +1,120 @@
+이게 html 코드
+
+<!DOCTYPE html>
+
+<html lang="ko">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>테스트 프로젝트</title>
+
+</head>
+
+<body>
+
+<h1>로그인 테스트</h1>
+
+<form action="/login" method="post">
+
+ID : <input type="text" id="id" name="inputId">
+
+PW : <input type="password" id="pw" name="inputPw">
+
+<button>로그인</button>
+
+</form>
+
+</body>
+
+</html>
+
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+여기가 클래스 
+[LoginController.java]
+
+package edu.kh.test.controller;
+
+import java.io.IOException;
+
+import edu.kh.test.model.dto.Member;
+
+import edu.kh.test.model.service.MemberService;
+
+import jakarta.servlet.ServletException;
+
+import jakarta.servlet.annotation.WebServlet;
+
+import jakarta.servlet.http.HttpServlet;
+
+import jakarta.servlet.http.HttpServletRequest;
+
+import jakarta.servlet.http.HttpServletResponse;
+
+@WebServlet
+
+public class LoginController extends HttpServlet{
+
+private MemberService service = new MemberService();
+
+@Override
+
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+try {
+
+String id = req.getParameter("id");
+
+String pw = req.getParameter("pw");
+
+Member member = service.login(id, pw);
+
+req.setAttribute("member", member);
+
+req.getRequestDispatcher("/WEB-INF/views/result.jsp");
+
+} catch (Exception e) {
+
+e.printStackTrace();
+
+}
+
+}
+
+}
+
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+여기가 jsp
+
+[result.jsp]
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+
+pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>로그인 결과</title>
+
+</head>
+
+<body>
+
+로그인 정보 : ${member}
+
+</body>
+
+</html>
+
+db 연결 나머지 안보이는 클래스들은 전부 문제없고 내가 제시한 코드들만 봣을때 문제점이 무엇일까?
