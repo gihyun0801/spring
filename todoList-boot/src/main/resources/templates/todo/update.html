@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update</title>
+</head>
+<body>
+
+    <h1 th:text="|${todo.todoNo} 번 째 할 일 수정|"></h1>
+    
+  <form action="/todo/update" method="post">
+   
+    수정할 제목 : <input type="text" name="todoTitle" th:value="${todo.todoTitle}"> <br><br>
+    수정할 내용 : <textarea name="todoContent" cols="50" rows="5" th:text="${todo.todoContent}">    </textarea>
+
+   <input type="hidden" name="todoNo" th:value="${todo.todoNo}">
+
+    <button>수정하기</button>
+  </form>
+
+  <th:block th:replace="~{common/footer}"></th:block>
+
+
+</body>
+</html>

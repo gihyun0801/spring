@@ -68,5 +68,41 @@ INSERT INTO TB_TODO
 VALUES(SEQ_TODO_NO.NEXTVAL, #{todoTitle}, #{todoContent}, DEFAULT, DEFAULT )
 </insert>
 
+<!-- 할 일 추가 -->
+
+ 							<!-- 가져온 매개변수 타입 int -->  
+<select id="todoDetail" parameterType="_int" resultType="edu.kh.todo.model.dto.Todo">
+
+SELECT TODO_NO, TODO_TITLE, TODO_CONTENT, COMPLETE, TO_CHAR( REG_DATE , 'YYYY-MM-DD HH24:MI:SS'   ) AS REG_DATE
+FROM TB_TODO
+WHERE TODO_NO = ${todoNo}
+
+
+</select>
+
+<update id="changeComplete" parameterType="edu.kh.todo.model.dto.Todo">
+
+UPDATE TB_TODO SET
+COMPLETE = #{complete}
+WHERE TODO_NO = ${todoNo}
+
+</update>
+
+<update id="update" parameterType="edu.kh.todo.model.dto.Todo">
+
+UPDATE TB_TODO SET
+TODO_TITLE = #{todoTitle} , TODO_CONTENT = #{todoContent}
+WHERE  TODO_NO = ${todoNo} 
+
+
+</update>
+
+<delete id="delete" parameterType="_int">
+
+DELETE TB_TODO
+WHERE TODO_NO = ${todoNo}
+
+</delete>
+
 
 </mapper>

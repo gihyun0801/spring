@@ -50,11 +50,12 @@ table tbody{
     </thead>
 
 
-     <tbody>
+     <tbody> 
         <tr th:each="c : ${todoList}" th:object="${c}">
             <td th:text="*{todoNo}" style="color:rgb(255, 0, 0);"></td>
             <td>
-                <a href="" th:text="*{todoTitle}"></a>
+                <a th:href="@{/todo/detail(todoNo=*{todoNo})}" 
+                th:text="*{todoTitle}">할 일 제목</a>
             </td>
             <td th:text="*{complete}"></td>
             <td th:text="*{regDate}"></td>
