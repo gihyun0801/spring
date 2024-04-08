@@ -1,5 +1,6 @@
 package edu.kh.todo.model.service;
 
+import java.util.List;
 import java.util.Map;
 
 import edu.kh.todo.model.dto.Todo;
@@ -26,6 +27,19 @@ public interface TodoService {
 	int update(int todoNo, String todoTitle, String todoContent);
 
 	int delete(int todoNo);
+
+	int getTotalCount();
+
+	int getCompleteCount22();
+
+	int addTodoAjax(Todo todo);
+
+	List<Todo> selectList();
+
+	int deleteTodo(int todoNo);
+
+	int updateTodo(Todo todo);
+
 
 	
 	

@@ -105,4 +105,55 @@ WHERE TODO_NO = ${todoNo}
 </delete>
 
 
+<select id="getTotalCount" resultType="_int">
+
+SELECT COUNT(*)
+FROM TB_TODO
+
+
+</select>
+
+<select id="getCompleteCount22" resultType="_int">
+
+
+SELECT COUNT(*)
+FROM TB_TODO
+WHERE COMPLETE = 'Y'
+
+
+</select>
+
+<insert id="addTodoAjax" parameterType="edu.kh.todo.model.dto.Todo">
+
+INSERT INTO TB_TODO
+VALUES(SEQ_TODO_NO.NEXTVAL, #{todoTitle}, #{todoContent}, DEFAULT, DEFAULT )
+
+</insert>
+
+<select id="selectList" resultType="edu.kh.todo.model.dto.Todo">
+
+SELECT TODO_NO, TODO_TITLE, TODO_CONTENT, COMPLETE, TO_CHAR( REG_DATE , 'YYYY-MM-DD HH24:MI:SS'   ) AS REG_DATE
+FROM TB_TODO
+
+</select>
+
+<delete id="deleteTodo" parameterType="_int">
+
+DELETE TB_TODO
+WHERE TODO_NO = ${todoNo}
+
+</delete>
+
+<update id="updateTodo" parameterType="edu.kh.todo.model.dto.Todo">
+
+UPDATE TB_TODO
+SET TODO_TITLE = #{todoTitle} , TODO_CONTENT = #{todoContent}
+WHERE TODO_NO = ${todoNo}
+
+</update>
+
+
+
+
+
 </mapper>

@@ -62,5 +62,18 @@ public interface TodoMapper {
 
 	int delete(int todoNo);
 
+	int getTotalCount();
+
+	int getCompleteCount22();
+
+	int addTodoAjax(Todo todo);
+
+	List<Todo> selectList();
+
+	int deleteTodo(int todoNo);
+
+	int updateTodo(Todo todo);
+
+
 
 }
