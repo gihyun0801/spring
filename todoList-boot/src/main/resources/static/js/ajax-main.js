@@ -173,7 +173,8 @@ const selectTodo = (url) => {
           popupTodoContent.innerText = todo.todoContent;
 
           //popup layer 보이게 하기
-
+ 
+           updateLayer.classList.add("popup-hidden");
           popupLayer.classList.remove("popup-hidden");
 
           
@@ -374,15 +375,36 @@ console.log(updateModal);
 changeComplete.addEventListener("click", function(){
 
         
-        
+        const todoNo = popupTodoNo.innerText;
+       
 
-
-        if(popupComplete.innerText === 'Y'){
+        if(popupComplete.innerText == 'Y'){
             popupComplete.innerText = 'N';
         }else{
             popupComplete.innerText = 'Y';
+        }
+
+        console.log(popupComplete.innerText);
+
+        const obj = {
+            
+          "todoNo" : todoNo,
+          "complete" : popupComplete.innerText
+
+
         };
 
+        console.log(obj);
+
+        fetch("/ajax/changeComplete", {method : "PUT", headers : {"Content-Type" : "application/json"}, body : JSON.stringify(obj)}   ).then(response => {
+                        return response.text()
+        }).then(result => {
+                        if(result > 0){
+                            getCompleteCount();
+                            getTotalCount();
+                            selectTodoList();
+                        };
+        });
         
         
 
@@ -391,6 +413,11 @@ changeComplete.addEventListener("click", function(){
 
 
 
+});
+
+const backBtn = document.querySelector("#backSpace").addEventListener("click", function(){
+    updateLayer.classList.add("popup-hidden");
+    popupLayer.classList.remove("popup-hidden");
 });
 
 

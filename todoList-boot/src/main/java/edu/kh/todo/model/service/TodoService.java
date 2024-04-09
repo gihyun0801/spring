@@ -40,6 +40,8 @@ public interface TodoService {
 
 	int updateTodo(Todo todo);
 
+	int changeComplete22(Todo todo);
+
 
 	
 	

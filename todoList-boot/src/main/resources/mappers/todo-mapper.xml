@@ -153,6 +153,13 @@ WHERE TODO_NO = ${todoNo}
 </update>
 
 
+<update id="changeComplete22" parameterType="edu.kh.todo.model.dto.Todo">
+
+UPDATE TB_TODO
+SET COMPLETE = #{complete}
+WHERE TODO_NO = ${todoNo}
+
+</update>
 
 
 

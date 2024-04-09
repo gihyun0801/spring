@@ -74,6 +74,8 @@ public interface TodoMapper {
 
 	int updateTodo(Todo todo);
 
+	int changeComplete22(Todo todo);
+
 
 
 }

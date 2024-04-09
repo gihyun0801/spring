@@ -173,6 +173,14 @@ public class TodoServiceImpl implements TodoService{
 		return result;
 	}
 
+	@Override
+	public int changeComplete22(Todo todo) {
+		
+		int result = mapper.changeComplete22(todo);
+		
+		return result;
+	}
+
 
 	  
 	 
