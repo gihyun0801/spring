@@ -4,13 +4,70 @@
 
 <select id="login" parameterType="string" resultType="edu.kh.project.member.model.dto.Member" >
 
-SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_PW, MEMBER_TEL, MEMBER_ADDRESS, PROFILE_IMG, AUTHORITY, 
-TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') ENROLL_DATE, MEMBER_DEL_FL
+SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_PW, MEMBER_TEL,MEMBER_DEL_FL , MEMBER_ADDRESS, PROFILE_IMG, AUTHORITY, TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') ENROLL_DATE
 FROM "MEMBER"
 WHERE MEMBER_EMAIL = #{memberEmail} AND MEMBER_DEL_FL = 'N'
 
 
 </select>
 
+<select id="checkEmail" parameterType="string" resultType="_int">
+
+
+SELECT COUNT(*)
+FROM "MEMBER"
+WHERE MEMBER_EMAIL = #{memberEmail} AND MEMBER_DEL_FL = 'N'
+
+
+</select>
+
+<insert id="signup" parameterType="edu.kh.project.member.model.dto.Member">
+
+
+INSERT INTO "MEMBER"
+VALUES(SEQ_MEMBER_NO.NEXTVAL, #{memberEmail}, #{memberPw}, #{memberNickname}, #{memberTel}, #{memberAddress}, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+
+
+</insert>
+
+<select id="fastLogin" resultType="edu.kh.project.member.model.dto.Member">
+
+SELECT MEMBER_EMAIL, MEMBER_PW
+FROM "MEMBER"
+WHERE MEMBER_EMAIL = #{memberEmail}
+
+
+</select>
+
+<select id="quickLogin" resultType="edu.kh.project.member.model.dto.Member">
+SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_PW, MEMBER_TEL,MEMBER_DEL_FL , MEMBER_ADDRESS, PROFILE_IMG, AUTHORITY, TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') ENROLL_DATE
+FROM "MEMBER"
+WHERE MEMBER_EMAIL = #{memberEmail} AND MEMBER_DEL_FL = 'N'
+
+
+</select>
+
+
+<select id="memberList" resultType="edu.kh.project.member.model.dto.Member">
+SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_DEL_FL
+FROM "MEMBER"
+WHERE MEMBER_DEL_FL = 'N'
+</select>
+
+<update id="resetPw" parameterType="edu.kh.project.member.model.dto.Member">
+
+UPDATE "MEMBER" SET
+MEMBER_PW = #{memberPw}
+WHERE MEMBER_NO = ${memberNo}
+
+</update>
+
+<update id="resetDelFl" parameterType="_int">
+
+UPDATE "MEMBER" SET
+MEMBER_DEL_FL = 'N'
+WHERE MEMBER_NO = ${memberNo}
+
+</update>
 
 </mapper>

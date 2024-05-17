@@ -1,5 +1,7 @@
 package edu.kh.project.member.model.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import edu.kh.project.member.model.dto.Member;
@@ -12,6 +14,20 @@ public interface MemberMapper {
 	 * @return
 	 */
 	Member login(String memberEmail);
+
+	int checkEmail(String memberEmail);
+
+	int signup(Member inputMember);
+
+	Member fastLogin(String memberEmail);
+
+	Member quickLogin(String memberEmail);
+
+	List<Member> memberList();
+
+	int resetPw(Member member);
+
+	int resetDelFl(int memberNo);
 
 
 }

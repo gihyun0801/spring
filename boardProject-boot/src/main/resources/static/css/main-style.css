@@ -3,8 +3,8 @@
 :root{
     --main-color : #455ba8;
   }
-  
-  
+ 
+
   *{
     /* border: 1px solid black; */
     box-sizing: border-box;
@@ -48,7 +48,13 @@
     flex-direction: row; /* 중심축 가로 방향(기본값) */
   }
   
-  header > section:first-child{ width: 15%; }
+.quick-login{
+  background-color: rgb(218, 218, 218);
+  border:1px solid black;
+  cursor: pointer;
+}
+
+  header > section:first-child{width: 15%;}
   header > section:nth-child(2){ width: 70%; }
   header > section:last-child{ width: 15%; }
   
@@ -444,4 +450,9 @@
   
   .content-1 hr{
     margin: 20px 0;
+  }
+
+  img{
+    width:100%;
+    height:100%;
   }

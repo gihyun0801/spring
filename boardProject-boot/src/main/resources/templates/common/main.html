@@ -20,47 +20,144 @@
     <!-- 메인 페이지 내용  -->
     <section class="content">
     
-      <section class="content-1"></section>
+      <section class="content-1">
+
+        
+       <span class="quick-login" id="user01">user01@kh.or.kr</span>
+       <span class="quick-login" id="boardproject0801">boardproject0801@gmail.com</span>
+
+       <hr><hr>
+
+
+       <h3>
+        회원 목록 조회(비동기)
+        <button id="selectMemberList">조회</button>
+       </h3>
+  
+
+       <table border="1" style="border-collapse: collapse;">
+
+            <thead>
+              <th style="background-color:yellow">회원 번호</th>
+              <th style="background-color:yellow">이메일</th>
+              <th style="background-color:yellow">닉네임</th>
+              <th style="background-color:yellow">탈퇴 여부</th>
+            </thead>
+
+             
+            <tbody id="memberList">
+               
+            </tbody>
+
+       </table>
+
+       <hr><hr>
+
+       <h3>특정 회원 비밀번호 초기화(Ajax)</h3>
+       <div>
+        회원번호 :
+        <input type="text" id="resetMemberNo">
+        <button id="resetPw">비밀번호 pass01! 로 초기화</button>
+       </div>
+
+       <hr><hr>
+
+       <h3>특정 회원(회원번호) 탈퇴 복구 (Ajax)</h3>
+       <div>
+        회원번호 : 
+        <input type="text" id="restorationMemberNo">
+        <button id="restorationBtn">복구하기</button>
+       </div>
+
+      </section>
 
       <section class="content-2">
         <!-- 로그인, 회원가입 버튼 -->
 
-          <!-- 로그인 박스 -->
-          <form action="/member/login" method="POST" id="loginForm">
-            <fieldset class="id-pw-area">
-  
-              <!-- 아이디/비밀번호 입력 -->
-              <section>
-                <input type="text" 
-                       name="memberEmail"
-                       placeholder="이메일">
-  
-                <input type="password" 
-                       name="memberPw" 
-                       placeholder="비밀번호">
-              </section>
-  
-              <!-- 로그인 버튼 -->
-              <section>
-                <button>로그인</button>
-              </section>
-            </fieldset>
-  
-            <label>
-              <!-- label 태그 : input 태그의 제목을 나타내는 태그  -->
-              <input type="checkbox" name="saveId">
-              아이디 저장
-            </label>
-  
-            <article class="signup-find-area">
 
-              <a href="/member/signup">회원가입</a>
 
-              <span> | </span>
-              <a href="#">ID/PW 찾기</a>
-            </article>
-  
-          </form>
+
+
+        <!--로그인이 되어있지 않은 경우-->
+
+<th:block th:if="${session.loginMember == null}">
+
+  <!-- 로그인 박스 -->
+  <form action="/member/login" method="POST" id="loginForm">
+    <fieldset class="id-pw-area">
+
+      <!-- 아이디/비밀번호 입력 -->
+      <section>
+        <input type="text" 
+               name="memberEmail"
+               placeholder="이메일">
+
+        <input type="password" 
+               name="memberPw" 
+               placeholder="비밀번호">
+      </section>
+
+      <!-- 로그인 버튼 -->
+      <section>
+        <button id="loginBtn">로그인</button>
+      </section>
+    </fieldset>
+
+    <label>
+      <!-- label 태그 : input 태그의 제목을 나타내는 태그  -->
+      <input type="checkbox" name="saveId">
+      아이디 저장
+    </label>
+
+    <article class="signup-find-area">
+
+      <a href="/member/signup">회원가입</a>
+
+      <span> | </span>
+      <a href="#">ID/PW 찾기</a>
+    </article>
+
+  </form>
+
+
+</th:block>
+
+
+        <!--로그인이 되어있는 경우-->
+
+
+<th:block th:if="${session.loginMember != null}">
+
+<article class="login-area">
+  <a href="/myPage/profile">
+    <!-- 프로필 이미지 -->
+
+    <!-- messages. properties에 작성된 기본 사용자 이미지-->
+      <img th:with="user=#{user.default.image}" th:src="${session.loginMember.profileImg ?: user}">
+      
+
+      <!-- th: with 는 변수를 선언해주겟다 user 라는 변수를
+       저기 #{}는 properties 파일에서 갖고온거다 -->
+
+       <!--messages.proerties에 작성된 기본 사용자 이미지
+           session.loginMember.profileImg 에 유저가 등록한 이미지가 있다면 (null 아니면)
+           session.loginMember.profileImg에 저장된 이미지 경로(../ex.png)를 쓰겟다-->
+  </a>
+
+
+  <div class="my-info" th:object="${session.loginMember}">
+      <div>
+        <a href="/myPage/info" id="nickname" th:text="*{memberNickname}">닉네임</a>
+        <a href="/member/logout" id="logoutBtn">로그아웃</a>
+      </div>
+  </div>
+
+</article>
+
+</th:block>
+
+
+        
 
       </section>
 
